@@ -1,1 +1,51 @@
-<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1" />\n  <title>Camapanha Pedro</title>\n  <script>\n    const SELLER_API_KEY = 'ba23eb28-dcee-49dd-9622-b0bfa68350e8';\n    const PRESSEL_ID = '2';\n    const API_URL = 'https://hottrack.vercel.app/api/registerClick';\n    const WHITE_PAGE_URL = 'https://fernandatamires.netlify.app/';\n    const TELEGRAM_USERNAME = 'Joyycebimbbot';\n    const botKeywords = ['facebookexternalhit', 'facebot', 'twitterbot', 'linkedinbot', 'slackbot', 'telegrambot', 'whatsapp', 'discordbot', 'googlebot', 'bingbot', 'crawler', 'spider', 'preview', 'httpclient', 'fetch'];\n    const isBot = () => botKeywords.some(bot => navigator.userAgent.toLowerCase().includes(bot));\n    const isMobile = () => /android|iphone|ipad|ipod/i.test(navigator.userAgent);\n    const getCookie = n => { const v = `; ${document.cookie}`; const p = v.split(`; ${n}=`); return p.length === 2 ? p.pop().split(';').shift() : null; };\n    const setCookie = (n, v, d=90) => { const e = new Date(Date.now() + d*864e5).toUTCString(); document.cookie = `${n}=${v}; expires=${e}; path=/; SameSite=Lax; Secure`; };\n    async function handleRedirect() {\n      if (isBot() || !isMobile()) {\n        window.location.replace(WHITE_PAGE_URL);\n        return;\n      }\n      const p = new URLSearchParams(window.location.search);\n      let fbp = getCookie('_fbp');\n      if (!fbp) { fbp = `fb.1.${Date.now()}.${Math.floor(Math.random() * 1e16)}`; setCookie('_fbp', fbp); }\n      let clickId = null;\n      try {\n        const payload = { sellerApiKey: SELLER_API_KEY, presselId: PRESSEL_ID, referer: document.referrer || '', fbclid: p.get('fbclid') || null, fbp: fbp || null, utm_source: p.get('utm_source') || null, utm_medium: p.get('utm_medium') || null, utm_campaign: p.get('utm_campaign') || null, utm_term: p.get('utm_term') || null, utm_content: p.get('utm_content') || null, user_agent: navigator.userAgent || null };\n        const r = await fetch(API_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });\n        if(r.ok) clickId = (await r.json()).click_id;\n      } catch (e) { console.error('Click registration failed', e); }\n      let finalUrl = `https://t.me/${TELEGRAM_USERNAME}`;\n      if (clickId) {\n        finalUrl += `?start=${clickId}`;\n      }\n      window.location.replace(finalUrl);\n    }\n    handleRedirect();\n  </script>\n  <script>\n    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');\n    fbq('init', '1817379038816925');\n    fbq('track', 'PageView');\n  </script>\n  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1817379038816925&ev=PageView&noscript=1"/></noscript>\n</head>\n<body><p>Redirecionando...</p></body>\n</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP</title>
+    <script>
+        const API_BASE_URL = 'https://hottrack.vercel.app';
+        const SELLER_API_KEY = 'f7bf8baf-7c87-4b52-8d7e-c6e8a3ca46c7';
+        const PRESSEL_ID = 1;
+        const TELEGRAM_USERNAME = 'gabrielabbimbot';
+        const WHITE_PAGE_URL = 'https://br.pinterest.com/';
+        const PIXELS_TO_TRACK = [];
+        
+        const isBot = () => /bot|facebook|crawler|spider|preview/i.test(navigator.userAgent);
+        const isMobile = () => /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+        
+        async function handleRedirect() {
+            if (isBot() || !isMobile()) { window.location.replace(WHITE_PAGE_URL); return; }
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const response = await fetch(`${API_BASE_URL}/api/registerClick`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sellerApiKey: SELLER_API_KEY,
+                        presselId: PRESSEL_ID,
+                        referer: document.referrer || null,
+                        fbclid: urlParams.get('fbclid') || null,
+                        fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+                        fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+                        user_agent: navigator.userAgent
+                    })
+                });
+                const data = await response.json();
+                if (response.ok && data.status === 'success') {
+                    window.location.replace(`https://t.me/${TELEGRAM_USERNAME}?start=${data.click_id}`);
+                } else { window.location.replace(WHITE_PAGE_URL); }
+            } catch (error) { window.location.replace(WHITE_PAGE_URL); }
+        }
+        handleRedirect();
+    </script>
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script');
+        PIXELS_TO_TRACK.forEach(p => { fbq('init', p.id); });
+        fbq('track', 'PageView');
+    </script>
+    <noscript></noscript>
+</head>
+<body><p>Redirecionando...</p></body>
+</html>
