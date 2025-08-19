@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VIP</title>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>VIP</title>
     <script>
         const API_BASE_URL = 'https://hottrack.vercel.app';
-        const SELLER_API_KEY = 'f7bf8baf-7c87-4b52-8d7e-c6e8a3ca46c7';
-        const PRESSEL_ID = 7;
+        const SELLER_API_KEY = 'a0b2f4ce-2011-4faf-9e77-52e59bbcb02b';
+        const PRESSEL_ID = 17;
         const TELEGRAM_USERNAME = 'gabriellabbimbot';
         const WHITE_PAGE_URL = 'https://br.pinterest.com/';
-        const PIXELS_TO_TRACK = [];
+        const PIXELS_TO_TRACK = [
+  {
+    "id": "1817379038816925"
+  }
+];
         
-        const isBot = () => /bot|facebook|crawler|spider|preview/i.test(navigator.userAgent);
-        const isMobile = () => /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-        
-        async function handleRedirect() {
-            if (isBot() || !isMobile()) { window.location.replace(WHITE_PAGE_URL); return; }
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                const response = await fetch(`${API_BASE_URL}/api/registerClick`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        sellerApiKey: SELLER_API_KEY,
-                        presselId: PRESSEL_ID,
-                        referer: document.referrer || null,
-                        fbclid: urlParams.get('fbclid') || null,
-                        fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
-                        fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
-                        user_agent: navigator.userAgent
-                    })
-                });
-                const data = await response.json();
-                if (response.ok && data.status === 'success') {
-                    window.location.replace(`https://t.me/${TELEGRAM_USERNAME}?start=${data.click_id}`);
-                } else { window.location.replace(WHITE_PAGE_URL); }
-            } catch (error) { window.location.replace(WHITE_PAGE_URL); }
-        }
+        const isBot=()=>/bot|facebook|crawler|spider|preview/i.test(navigator.userAgent),isMobile=()=>/android|iphone|ipad|ipod/i.test(navigator.userAgent);
+        async function handleRedirect(){if(isBot()||!isMobile()){window.location.replace(WHITE_PAGE_URL);return}
+        try{const t=new URLSearchParams(window.location.search),e=await fetch(`${API_BASE_URL}/api/registerClick`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sellerApiKey:SELLER_API_KEY,presselId:PRESSEL_ID,referer:document.referrer||null,fbclid:t.get("fbclid")||null,fbp:document.cookie.match(/_fbp=([^;]+)/)?.[1]||null,fbc:document.cookie.match(/_fbc=([^;]+)/)?.[1]||null,user_agent:navigator.userAgent})}),a=await e.json();e.ok&&"success"===a.status?window.location.replace(`https://t.me/${TELEGRAM_USERNAME}?start=${a.click_id}`):window.location.replace(WHITE_PAGE_URL)}catch(t){window.location.replace(WHITE_PAGE_URL)}}
         handleRedirect();
     </script>
     <script>
@@ -45,7 +24,7 @@
         PIXELS_TO_TRACK.forEach(p => { fbq('init', p.id); });
         fbq('track', 'PageView');
     </script>
-    <noscript></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1817379038816925&ev=PageView&noscript=1"/></noscript>
 </head>
 <body><p>Redirecionando...</p></body>
 </html>
