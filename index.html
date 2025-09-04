@@ -7,14 +7,14 @@
     <script>
         const API_BASE_URL = 'https://novaapi-one.vercel.app';
         const SELLER_API_KEY = '44f7ccc0-4634-43fe-a36c-8a318aa8f2c8';
-        const PRESSEL_ID = 32;
+        const PRESSEL_ID = 31;
         const TELEGRAM_USERNAME = 'luiisarodriguesbot';
-        const WHITE_PAGE_URL = 'https://fernandatamires.netlify.app/';
+        const WHITE_PAGE_URL = 'https://g1.globo.com/pop-arte/noticia/2025/07/21/modelo-sofre-queda-durante-disputa-de-reality-show.ghtml';
         const PIXELS_TO_TRACK = [
-  {
-    "id": "957597943158781"
-  }
-];
+            {
+                "id": "957597943158781"
+            }
+        ];
         
         const isBot = () => /bot|facebook|crawler|spider|preview/i.test(navigator.userAgent);
         const isMobile = () => /android|iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -26,28 +26,29 @@
             }
             try {
                 const params = new URLSearchParams(window.location.search);
-                const response = await fetch(${API_BASE_URL}/api/registerClick, {
+                // LINHA CORRIGIDA ABAIXO - ADICIONADO CRASES ``
+                const response = await fetch(`${API_BASE_URL}/api/registerClick`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                          sellerApiKey: SELLER_API_KEY,
-                          presselId: PRESSEL_ID,
-                          referer: document.referrer || null,
-                          fbclid: params.get("fbclid") || null,
-                          fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
-                          fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
-                          user_agent: navigator.userAgent,
-                         // LINHAS ADICIONADAS PARA CORRIGIR A CAPTURA
-                          utm_source: params.get("utm_source"),
-                          utm_campaign: params.get("utm_campaign"),
-                          utm_medium: params.get("utm_medium"),
-                          utm_content: params.get("utm_content"),
-                          utm_term: params.get("utm_term")
+                        sellerApiKey: SELLER_API_KEY,
+                        presselId: PRESSEL_ID,
+                        referer: document.referrer || null,
+                        fbclid: params.get("fbclid") || null,
+                        fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+                        fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+                        user_agent: navigator.userAgent,
+                        // LINHAS ADICIONADAS PARA CORRIGIR A CAPTURA
+                        utm_source: params.get("utm_source"),
+                        utm_campaign: params.get("utm_campaign"),
+                        utm_medium: params.get("utm_medium"),
+                        utm_content: params.get("utm_content"),
+                        utm_term: params.get("utm_term")
                     })
                 });
                 const data = await response.json();
                 if (response.ok && data.status === "success") {
-                    window.location.replace(https://t.me/${TELEGRAM_USERNAME}?start=${data.click_id});
+                    window.location.replace(`https://t.me/${TELEGRAM_USERNAME}?start=${data.click_id}`);
                 } else {
                     window.location.replace(WHITE_PAGE_URL);
                 }
@@ -64,7 +65,7 @@
         PIXELS_TO_TRACK.forEach(p => { fbq('init', p.id); });
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${selectedPixels.length > 0 ? selectedPixels[0].pixel_id : ''}&ev=PageView&noscript=1"/></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=957597943158781&ev=PageView&noscript=1"/></noscript>
 </head>
 <body><p>Redirecionando...</p></body>
 </html>
